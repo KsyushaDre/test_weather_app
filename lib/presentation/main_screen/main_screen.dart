@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_cubit.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_state.dart';
@@ -37,11 +36,9 @@ class _MainScreenState extends State<MainScreen> {
         child: BlocSelector<MainScreenCubit, MainScreenState, bool>(
           selector: (state) => state.isLoading,
           builder: (context, isLoading) {
-            print('BUILD main widget');
             if (!isLoading) {
               return OrientationBuilder(
                 builder: (context, orientation) {
-                  print('ORIENTATION BUILDER, orientation: $orientation');
                   switch (orientation) {
                     case Orientation.portrait:
                       return Column(

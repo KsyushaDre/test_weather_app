@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color infoNowCardColor;
-  //todo rename var
-  final Color infoTodayCardColor;
+  final Color forecastInfoCardColor;
 
   const ThemeColors({
     required this.infoNowCardColor,
-    required this.infoTodayCardColor,
+    required this.forecastInfoCardColor,
   });
 
   @override
   ThemeExtension<ThemeColors> copyWith({
     Color? infoNowCardColor,
-    Color? infoTodayCardColor,
+    Color? forecastInfoCardColor,
   }) {
     return ThemeColors(
       infoNowCardColor: infoNowCardColor ?? this.infoNowCardColor,
-      infoTodayCardColor: infoTodayCardColor ?? this.infoTodayCardColor,
+      forecastInfoCardColor: forecastInfoCardColor ?? this.forecastInfoCardColor,
     );
   }
 
@@ -32,7 +31,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
 
     return ThemeColors(
       infoNowCardColor: Color.lerp(infoNowCardColor, other.infoNowCardColor, t)!,
-      infoTodayCardColor: Color.lerp(infoTodayCardColor, other.infoTodayCardColor, t)!,
+      forecastInfoCardColor: Color.lerp(forecastInfoCardColor, other.forecastInfoCardColor, t)!,
     );
   }
 }

@@ -19,12 +19,10 @@ class MainScreenCubit extends Cubit<MainScreenState> {
       WeatherData? weatherRepoData = await weatherRepository.getWeatherData();
 
       if (weatherRepoData != null) {
-        print('weatherRepoData != null');
         final DateTime currentDate = DateTime.now();
         final DateTime repoDataDate = weatherRepoData.updateDate;
 
         if (currentDate.day == repoDataDate.day && currentDate.month == repoDataDate.month) {
-          print('it is today');
           _emitWeatherData(weatherRepoData);
         }
       }
@@ -32,7 +30,6 @@ class MainScreenCubit extends Cubit<MainScreenState> {
       WeatherData? weatherApiData = await weatherApi.getWeatherData(locationName: state.city.name);
 
       if (weatherApiData != null) {
-        print('weatherApiData != null');
         _emitWeatherData(weatherApiData);
       }
     } finally {
@@ -40,33 +37,15 @@ class MainScreenCubit extends Cubit<MainScreenState> {
     }
   }
 
-
-
   Future<void> changeCity(City? city) async {
-
     try {
-      // WeatherData? weatherRepoData = await weatherRepository.getWeatherData();
-      //
-      // if (weatherRepoData != null) {
-      //   print('weatherRepoData != null');
-      //   final DateTime currentDate = DateTime.now();
-      //   final DateTime repoDataDate = weatherRepoData.updateDate;
-      //
-      //   if (currentDate.day == repoDataDate.day && currentDate.month == repoDataDate.month) {
-      //     print('it is today');
-      //     _emitWeatherData(weatherRepoData);
-      //   }
-
-     if (city != null) {
-       emit(state.copyWith(city: city));
+      if (city != null) {
+        emit(state.copyWith(city: city));
         WeatherData? weatherApiData = await weatherApi.getWeatherData(locationName: city.name);
 
         if (weatherApiData != null) {
-          print('changeCity weatherApiData != null');
           await weatherRepository.saveWeatherData(weatherApiData);
-
           _emitWeatherData(weatherApiData);
-
         }
       }
     } catch (e) {

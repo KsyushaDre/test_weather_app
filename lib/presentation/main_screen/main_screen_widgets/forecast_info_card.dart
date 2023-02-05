@@ -20,7 +20,7 @@ class ForecastInfoCard extends StatelessWidget {
     final String title = isToday ? 'Today' : DateFormat('dd.MM').format(dayForecastData.date);
 
     return InfoCard(
-      backgroundColor: context.infoTodayCardColor,
+      backgroundColor: context.forecastInfoCardColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

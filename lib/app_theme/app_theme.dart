@@ -12,7 +12,7 @@ class AppTheme {
       extensions: const <ThemeExtension<dynamic>>[
         ThemeColors(
           infoNowCardColor: Color(0xFF81D4FA),
-          infoTodayCardColor: Color(0xFFB3E5FC),
+          forecastInfoCardColor: Color(0xFFB3E5FC),
         ),
         ThemeTextStyles(
           currentLocationName: TextStyle(

@@ -5,7 +5,7 @@ import 'package:test_weather_app/extensions/theme_extensions/theme_text_styles.d
 extension BuildContextColorThemeExtension on BuildContext {
   Color get infoNowCardColor => Theme.of(this).extension<ThemeColors>()!.infoNowCardColor;
 
-  Color get infoTodayCardColor => Theme.of(this).extension<ThemeColors>()!.infoTodayCardColor;
+  Color get forecastInfoCardColor => Theme.of(this).extension<ThemeColors>()!.forecastInfoCardColor;
 }
 
 extension BuildContextTextThemeExtension on BuildContext {

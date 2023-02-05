@@ -34,9 +34,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 
   @override
   ThemeExtension<ThemeTextStyles> lerp(
-      ThemeExtension<ThemeTextStyles>? other,
-      double t,
-      ) {
+    ThemeExtension<ThemeTextStyles>? other,
+    double t,
+  ) {
     if (other is! ThemeTextStyles) {
       return this;
     }
