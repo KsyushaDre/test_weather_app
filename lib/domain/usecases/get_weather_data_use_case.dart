@@ -2,6 +2,7 @@ import 'package:test_weather_app/domain/api/weather_api.dart';
 import 'package:test_weather_app/domain/domain_models/weather_data.dart';
 import 'package:test_weather_app/domain/repository/weather_repository.dart';
 
+//todo maybe delete usecase
 class GetWeatherDataUseCase {
   final WeatherRepository weatherRepository;
   final WeatherApi weatherApi;
@@ -12,6 +13,6 @@ class GetWeatherDataUseCase {
   });
 
   Future<WeatherData?> execute() {
-    return weatherApi.getWeatherData(locationName: 'Minsk');
+      return weatherApi.getWeatherData(locationName: 'Minsk');
   }
 }

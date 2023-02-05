@@ -16,17 +16,12 @@ class _$Injector extends Injector {
   }
 
   @override
-  void _configureDomain() {
-    final KiwiContainer container = KiwiContainer();
-    container.registerFactory((c) => GetWeatherDataUseCase(
-        weatherRepository: c<WeatherRepository>(),
-        weatherApi: c<WeatherApi>()));
-  }
-
+  void _configureDomain() {}
   @override
   void _configurePresentation() {
     final KiwiContainer container = KiwiContainer();
-    container.registerFactory((c) =>
-        MainScreenCubit(getWeatherDataUseCase: c<GetWeatherDataUseCase>()));
+    container.registerFactory((c) => MainScreenCubit(
+        weatherApi: c<WeatherApi>(),
+        weatherRepository: c<WeatherRepository>()));
   }
 }

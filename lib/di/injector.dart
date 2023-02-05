@@ -4,7 +4,7 @@ import 'package:test_weather_app/data/repository/weather_repository_impl.dart';
 import 'package:test_weather_app/domain/api/weather_api.dart';
 import 'package:test_weather_app/domain/repository/weather_repository.dart';
 import 'package:test_weather_app/domain/usecases/get_weather_data_use_case.dart';
-import 'package:test_weather_app/presentation/main_screen_cubit.dart';
+import 'package:test_weather_app/presentation/main_screen/main_screen_cubit.dart';
 
 part 'injector.g.dart';
 
@@ -32,7 +32,7 @@ abstract class Injector {
   void _configureData();
 
   //domain
-  @Register.factory(GetWeatherDataUseCase)
+  // @Register.factory(GetWeatherDataUseCase)
   void _configureDomain();
 
   //presentation

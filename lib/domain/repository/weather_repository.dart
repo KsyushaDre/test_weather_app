@@ -1,4 +1,7 @@
+import 'package:test_weather_app/domain/domain_models/weather_data.dart';
+
 abstract class WeatherRepository {
-  //todo change return type and parameters
-  Future<void> getWeatherData();
+  Future<WeatherData?> getWeatherData();
+
+  Future<void> saveWeatherData(WeatherData weatherData);
 }

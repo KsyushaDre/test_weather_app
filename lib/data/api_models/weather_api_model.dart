@@ -33,6 +33,7 @@ class WeatherApiModel {
     }
 
     return WeatherData(
+      updateDate: DateTime.now(),
       currentWeatherData: CurrentWeatherData(
         locationName: location.name,
         currentConditionDesc: current.condition.text,

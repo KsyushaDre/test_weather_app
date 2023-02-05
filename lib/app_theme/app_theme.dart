@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_weather_app/app_theme/extensions/theme_extensions/theme_colors.dart';
-import 'package:test_weather_app/app_theme/extensions/theme_extensions/theme_text_styles.dart';
+import 'package:test_weather_app/extensions/theme_extensions/theme_colors.dart';
+import 'package:test_weather_app/extensions/theme_extensions/theme_text_styles.dart';
 
 class AppTheme {
   static ThemeData get light {
@@ -44,6 +44,4 @@ class AppTheme {
       ],
     );
   }
-
-  static const TextTheme textTheme = TextTheme();
 }

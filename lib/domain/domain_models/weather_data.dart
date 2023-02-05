@@ -1,13 +1,25 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'weather_data.g.dart';
+
+@JsonSerializable()
 class WeatherData {
+  final DateTime updateDate;
   final CurrentWeatherData currentWeatherData;
   final List<DayForecastData> dailyForecast;
 
   WeatherData({
+    required this.updateDate,
     required this.currentWeatherData,
     required this.dailyForecast,
   });
+
+  factory WeatherData.fromJson(Map<String, dynamic> json) => _$WeatherDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WeatherDataToJson(this);
 }
 
+@JsonSerializable()
 class CurrentWeatherData {
   final String locationName;
   final String currentConditionDesc;
@@ -24,8 +36,13 @@ class CurrentWeatherData {
     required this.windVelocityKpH,
     required this.windDirection,
   });
+
+  factory CurrentWeatherData.fromJson(Map<String, dynamic> json) => _$CurrentWeatherDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CurrentWeatherDataToJson(this);
 }
 
+@JsonSerializable()
 class DayForecastData {
   final DateTime date;
   final String conditionDesc;
@@ -40,4 +57,8 @@ class DayForecastData {
     required this.minTempCelsius,
     required this.maxWindVelocityKpH,
   });
+
+  factory DayForecastData.fromJson(Map<String, dynamic> json) => _$DayForecastDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DayForecastDataToJson(this);
 }

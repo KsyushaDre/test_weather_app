@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color infoNowCardColor;
+  //todo rename var
   final Color infoTodayCardColor;
 
   const ThemeColors({
