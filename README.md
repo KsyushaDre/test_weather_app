@@ -3,8 +3,8 @@
 Test Weather App (test task)
 
 Necessary improvements:  
-    move double values to constants;  
-    handle exceptions;  
-    add localization and move there string constants;  
-    add tests;  
-    add estimation for above points. 
+&emsp;    move double values to constants;  
+&emsp;    handle exceptions;  
+&emsp;	  add localization and move there string constants;  
+&emsp;	  add tests;  
+&emsp;	  add estimation for above points. 
