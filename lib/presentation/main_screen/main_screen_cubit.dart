@@ -30,6 +30,7 @@ class MainScreenCubit extends Cubit<MainScreenState> {
       WeatherData? weatherApiData = await weatherApi.getWeatherData(locationName: state.city.name);
 
       if (weatherApiData != null) {
+        await weatherRepository.saveWeatherData(weatherApiData);
         _emitWeatherData(weatherApiData);
       }
     } finally {
