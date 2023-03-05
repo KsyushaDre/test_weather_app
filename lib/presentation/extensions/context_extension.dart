@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_weather_app/extensions/theme_extensions/theme_colors.dart';
-import 'package:test_weather_app/extensions/theme_extensions/theme_text_styles.dart';
+import 'package:test_weather_app/presentation/extensions/theme_extensions/theme_colors.dart';
+import 'package:test_weather_app/presentation/extensions/theme_extensions/theme_text_styles.dart';
 
 extension BuildContextColorThemeExtension on BuildContext {
   Color get infoNowCardColor => Theme.of(this).extension<ThemeColors>()!.infoNowCardColor;

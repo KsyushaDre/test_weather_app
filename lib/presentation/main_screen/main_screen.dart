@@ -30,6 +30,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -49,19 +51,17 @@ class _MainScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Flexible(
-                                flex: 1,
                                 child: currentInfoWidget,
                               ),
                               const SizedBox(width: 8),
                               Flexible(
-                                flex: 1,
                                 child: todayInfoWidget,
                               ),
                             ],
                           ),
                           Builder(
                             builder: (context) {
-                              double height = MediaQuery.of(context).size.height * 0.2;
+                              double height = screenSize.height * 0.2;
                               return SizedBox(
                                 height: height,
                                 child: forecastInfoListWidget,
@@ -81,18 +81,16 @@ class _MainScreenState extends State<MainScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Flexible(
-                                flex: 1,
                                 child: currentInfoWidget,
                               ),
                               Flexible(
-                                flex: 1,
                                 child: todayInfoWidget,
                               ),
                             ],
                           ),
                           Builder(
                             builder: (context) {
-                              double width = MediaQuery.of(context).size.width * 0.4;
+                              double width = screenSize.width * 0.4;
                               return SizedBox(
                                 width: width,
                                 child: Padding(

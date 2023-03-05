@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_weather_app/extensions/context_extension.dart';
+import 'package:test_weather_app/presentation/extensions/context_extension.dart';
 
 class AnnotatedDataText extends StatelessWidget {
   final String annotation;

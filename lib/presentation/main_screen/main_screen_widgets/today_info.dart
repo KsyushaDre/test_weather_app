@@ -10,10 +10,13 @@ class TodayInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<MainScreenCubit, MainScreenState, DayForecastData>(
-      selector: (state) => state.todayData!,
+    return BlocSelector<MainScreenCubit, MainScreenState, DayForecastData?>(
+      selector: (state) => state.todayData,
       builder: (context, todayData) {
-        return ForecastInfoCard(dayForecastData: todayData);
+        if (todayData != null) {
+          return ForecastInfoCard(dayForecastData: todayData);
+        }
+        return const SizedBox();
       },
     );
   }

@@ -1,38 +1,30 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_weather_app/domain/api/weather_api.dart';
 import 'package:test_weather_app/domain/domain_models/weather_data.dart';
 import 'package:test_weather_app/domain/enums/city.dart';
-import 'package:test_weather_app/domain/repository/weather_repository.dart';
+import 'package:test_weather_app/domain/use_cases/get_initial_weather_data_use_case.dart';
+import 'package:test_weather_app/domain/use_cases/get_new_weather_data_use_case.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_state.dart';
 
 class MainScreenCubit extends Cubit<MainScreenState> {
-  final WeatherApi weatherApi;
-  final WeatherRepository weatherRepository;
+  final GetInitialWeatherDataUseCase getInitialWeatherDataUseCase;
+  final GetNewWeatherDataUseCase getNewWeatherDataUseCase;
 
   MainScreenCubit({
-    required this.weatherApi,
-    required this.weatherRepository,
+    required this.getInitialWeatherDataUseCase,
+    required this.getNewWeatherDataUseCase,
   }) : super(const MainScreenState());
 
   Future<void> getWeatherData() async {
     try {
-      WeatherData? weatherRepoData = await weatherRepository.getWeatherData();
+      final Stream<WeatherData?> weatherDataStream = getInitialWeatherDataUseCase.execute();
 
-      if (weatherRepoData != null) {
-        final DateTime currentDate = DateTime.now();
-        final DateTime repoDataDate = weatherRepoData.updateDate;
-
-        if (currentDate.day == repoDataDate.day && currentDate.month == repoDataDate.month) {
-          _emitWeatherData(weatherRepoData);
+      await for (final weatherData in weatherDataStream) {
+        if (weatherData != null) {
+          _emitWeatherData(weatherData);
         }
       }
-
-      WeatherData? weatherApiData = await weatherApi.getWeatherData(locationName: state.city.name);
-
-      if (weatherApiData != null) {
-        await weatherRepository.saveWeatherData(weatherApiData);
-        _emitWeatherData(weatherApiData);
-      }
+    } catch (e) {
+      print(e);
     } finally {
       emit(state.copyWith(isLoading: false));
     }
@@ -40,14 +32,11 @@ class MainScreenCubit extends Cubit<MainScreenState> {
 
   Future<void> changeCity(City? city) async {
     try {
-      if (city != null) {
-        emit(state.copyWith(city: city));
-        WeatherData? weatherApiData = await weatherApi.getWeatherData(locationName: city.name);
+      emit(state.copyWith(city: city));
+      final WeatherData? weatherApiData = await getNewWeatherDataUseCase.execute(city);
 
-        if (weatherApiData != null) {
-          await weatherRepository.saveWeatherData(weatherApiData);
-          _emitWeatherData(weatherApiData);
-        }
+      if (weatherApiData != null) {
+        _emitWeatherData(weatherApiData);
       }
     } catch (e) {
       print(e);

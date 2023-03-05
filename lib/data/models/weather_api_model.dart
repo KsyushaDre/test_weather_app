@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:test_weather_app/domain/domain_models/weather_data.dart';
 
 part 'weather_api_model.g.dart';
 
@@ -18,33 +17,6 @@ class WeatherApiModel {
   factory WeatherApiModel.fromJson(Map<String, dynamic> json) => _$WeatherApiModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WeatherApiModelToJson(this);
-
-  WeatherData get toWeatherDataModel {
-    List<DayForecastData> dayForecastDataList = [];
-
-    for (var element in forecast.forecastday) {
-      dayForecastDataList.add(DayForecastData(
-        date: element.date,
-        conditionDesc: element.day.condition.text,
-        maxTempCelsius: element.day.maxtemp_c,
-        minTempCelsius: element.day.mintemp_c,
-        maxWindVelocityKpH: element.day.maxwind_kph,
-      ));
-    }
-
-    return WeatherData(
-      updateDate: DateTime.now(),
-      currentWeatherData: CurrentWeatherData(
-        locationName: location.name,
-        currentConditionDesc: current.condition.text,
-        currentTempCelsius: current.temp_c,
-        feelsLikeCelsius: current.feelslike_c,
-        windVelocityKpH: current.wind_kph,
-        windDirection: current.wind_dir,
-      ),
-      dailyForecast: dayForecastDataList,
-    );
-  }
 }
 
 @JsonSerializable()

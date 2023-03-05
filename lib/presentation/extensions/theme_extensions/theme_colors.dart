@@ -30,8 +30,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     }
 
     return ThemeColors(
-      infoNowCardColor: Color.lerp(infoNowCardColor, other.infoNowCardColor, t)!,
-      forecastInfoCardColor: Color.lerp(forecastInfoCardColor, other.forecastInfoCardColor, t)!,
+      infoNowCardColor: Color.lerp(infoNowCardColor, other.infoNowCardColor, t) ?? other.infoNowCardColor,
+      forecastInfoCardColor: Color.lerp(forecastInfoCardColor, other.forecastInfoCardColor, t) ?? other.forecastInfoCardColor,
     );
   }
 }

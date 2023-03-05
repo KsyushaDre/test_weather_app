@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:test_weather_app/domain/domain_models/weather_data.dart';
-import 'package:test_weather_app/extensions/context_extension.dart';
-import 'package:test_weather_app/extensions/double_extension.dart';
+import 'package:test_weather_app/presentation/extensions/context_extension.dart';
+import 'package:test_weather_app/presentation/extensions/double_extension.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_widgets/annotated_data_text.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_widgets/info_card.dart';
 

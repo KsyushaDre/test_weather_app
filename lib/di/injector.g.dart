@@ -11,17 +11,28 @@ class _$Injector extends Injector {
   void _configureData() {
     final KiwiContainer container = KiwiContainer();
     container
-      ..registerSingleton<WeatherApi>((c) => WeatherApiImpl())
-      ..registerSingleton<WeatherRepository>((c) => WeatherRepositoryImpl());
+      ..registerSingleton<WeatherDataApi>((c) => WeatherDataApiImpl())
+      ..registerSingleton<WeatherDataStorage>((c) => WeatherDataStorageImpl())
+      ..registerSingleton<WeatherRepository>((c) => WeatherRepositoryImpl(
+          weatherDataApi: c<WeatherDataApi>(),
+          weatherDataStorage: c<WeatherDataStorage>()));
   }
 
   @override
-  void _configureDomain() {}
+  void _configureDomain() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory((c) => GetInitialWeatherDataUseCase(
+          weatherRepository: c<WeatherRepository>()))
+      ..registerFactory((c) =>
+          GetNewWeatherDataUseCase(weatherRepository: c<WeatherRepository>()));
+  }
+
   @override
   void _configurePresentation() {
     final KiwiContainer container = KiwiContainer();
     container.registerFactory((c) => MainScreenCubit(
-        weatherApi: c<WeatherApi>(),
-        weatherRepository: c<WeatherRepository>()));
+        getInitialWeatherDataUseCase: c<GetInitialWeatherDataUseCase>(),
+        getNewWeatherDataUseCase: c<GetNewWeatherDataUseCase>()));
   }
 }

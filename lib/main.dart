@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_weather_app/app_theme/app_theme.dart';
 import 'package:test_weather_app/di/injector.dart';
+import 'package:test_weather_app/presentation/app_theme/app_theme.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen.dart';
 import 'package:test_weather_app/presentation/main_screen/main_screen_cubit.dart';
 

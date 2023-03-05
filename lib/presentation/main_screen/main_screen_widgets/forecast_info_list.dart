@@ -12,21 +12,24 @@ class ForecastInfoList extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isPortraitOrientation = MediaQuery.of(context).orientation == Orientation.portrait;
 
-    return BlocSelector<MainScreenCubit, MainScreenState, List<DayForecastData>>(
-      selector: (state) => state.forecastData!,
+    return BlocSelector<MainScreenCubit, MainScreenState, List<DayForecastData>?>(
+      selector: (state) => state.forecastData,
       builder: (context, forecastDataList) {
-        return ListView.separated(
-          itemCount: forecastDataList.length,
-          scrollDirection: isPortraitOrientation ? Axis.horizontal : Axis.vertical,
-          separatorBuilder: (_, __) {
-            return isPortraitOrientation ? const SizedBox(width: 10) : const SizedBox(height: 20);
-          },
-          itemBuilder: (_, index) {
-            return ForecastInfoCard(
-              dayForecastData: forecastDataList[index],
-            );
-          },
-        );
+        if (forecastDataList != null) {
+          return ListView.separated(
+            itemCount: forecastDataList.length,
+            scrollDirection: isPortraitOrientation ? Axis.horizontal : Axis.vertical,
+            separatorBuilder: (_, __) {
+              return isPortraitOrientation ? const SizedBox(width: 10) : const SizedBox(height: 20);
+            },
+            itemBuilder: (_, index) {
+              return ForecastInfoCard(
+                dayForecastData: forecastDataList[index],
+              );
+            },
+          );
+        }
+        return const SizedBox();
       },
     );
   }
